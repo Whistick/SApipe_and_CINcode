@@ -1,0 +1,18 @@
+# mamba activate ConvertRPy  （dior package）
+# R
+
+# in R:
+library(Seurat)
+library(dior)
+library(qs)
+
+adata <- qread("Epi_CIN.qs")
+# adata@assays$RNA@data <- adata@assays$RNA@counts
+dior::write_h5(adata, file='Epi_CIN.h5', object.type = 'seurat')
+
+# in Python： 
+import scanpy
+import anndata
+import diopy
+adata = diopy.input.read_h5(file = 'Epi_CIN.h5')
+adata.write_h5ad("Epi_CIN.h5ad")
